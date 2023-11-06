@@ -7,8 +7,6 @@
         "BetterSettings": "github:S0m3randomguy/bettersettings#2023.5.1"
     },
     "files": [
-        "main.blocks",
-        "main.ts",
         "README.md",
         "assets.json",
         "arcade-leaderboard.ts"
