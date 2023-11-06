@@ -40,12 +40,11 @@ namespace Leaderboard {
                 scores = scores.slice().sort((a, b) => a.score - b.score);
                 break;
             default:
-                // Handle the default case, e.g., do nothing or show an error message.
                 break;
         }
 
-        if (scores.length > 9) {
-            scores = scores.slice(0, 9);
+        if (scores.length > 12) {
+            scores = scores.slice(0, 12);
         }
     }
 
@@ -81,8 +80,8 @@ namespace Leaderboard {
                 }
                 name = name.toUpperCase()
 
-                screen.print(name + " " + score.score, x, y, color)
-                y += 10
+                screen.print(name + " " + score.score, x, y, color, image.font5)
+                y += 8
             }
         })
     }
@@ -118,8 +117,8 @@ namespace Leaderboard {
 
     // leaderboard settings
     let maxNameLenght: number = 3
-    let x: number = 16
-    let top: number = 16
+    let x: number = 60
+    let top: number = 22
     let color: number = 1
 
     //% block="set leaderboard $property to $value"
@@ -142,7 +141,7 @@ namespace Leaderboard {
     //% weight=99
     //% color.shadow="colorindexpicker"
     //% color.defl=1
-    export function setLeaderboardColor(color: number) {
-        color = color
+    export function setLeaderboardColor(newColor: number) {
+        color = newColor
     }
 }
