@@ -5,11 +5,42 @@ enum ScoreTypes {
     LowestScore
 }
 
+enum LeaderboardProperty {
+    MaxNameLenght,
+    X,
+    Top
+}
+
 //% block="Leaderboard"
 namespace Leaderboard {
 
     class ScoreEntry {
         constructor(public name: string, public score: number) { }
+    }
+
+    // leaderboard settings
+    let maxNameLenght: number = 3
+    let x: number = 16
+    let top: number = 16
+    let color: number = 1
+
+    //% block="set leaderboard $property to $value"
+    export function setLeaderboardProperty(property: LeaderboardProperty, value: number) {
+        if (property == LeaderboardProperty.MaxNameLenght) {
+            maxNameLenght = value
+        }
+        else if (property == LeaderboardProperty.X) {
+            x = value
+        }
+        else if (property == LeaderboardProperty.Top) {
+            top = value
+        }
+    }
+
+    //% block="set leaderboard color to $color"
+    //% color.shadow=colorIndexPicker
+    export function setLeaderboardColor(color: number) {
+        color = color
     }
 
     let scores: ScoreEntry[] = []
@@ -58,19 +89,17 @@ namespace Leaderboard {
     //% block
     export function showScores() {
         scoreScreen = scene.createRenderable(1, (screen, camera) => {
-            let y = 16;
+            let y = top;
 
             for (const score of scores) {
                 let name = score.name
-                switch (name.length) {
-                    case (1):
-                        name += " "
-                    case (2):
-                        name += " "
+                name = name.substr(0, maxNameLenght)
+                for (let i = name.length; i < maxNameLenght; i++) {
+                    name += " "
                 }
                 name = name.toUpperCase()
 
-                screen.print(name + " " + score.score, 16, y)
+                screen.print(name + " " + score.score, x, y, color)
                 y += 10
             }
         })
