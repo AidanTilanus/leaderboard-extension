@@ -12,6 +12,7 @@ enum LeaderboardProperty {
 }
 
 //% block="Leaderboard"
+//% groups="['Basic', 'Saving', 'Customization']"
 namespace Leaderboard {
 
     class ScoreEntry {
@@ -25,6 +26,7 @@ namespace Leaderboard {
     let color: number = 1
 
     //% block="set leaderboard $property to $value"
+    //% group="Customization"
     export function setLeaderboardProperty(property: LeaderboardProperty, value: number) {
         if (property == LeaderboardProperty.MaxNameLenght) {
             maxNameLenght = value
@@ -38,7 +40,9 @@ namespace Leaderboard {
     }
 
     //% block="set leaderboard color to $color"
-    //% color.shadow=colorIndexPicker
+    //% color.shadow="colorindexpicker"
+    //% color.defl=1
+    //% group="Customization"
     export function setLeaderboardColor(color: number) {
         color = color
     }
@@ -74,11 +78,13 @@ namespace Leaderboard {
     }
 
     //% block="set score type to $type"
+    //% group="Basic"
     export function setScoreType(type: ScoreTypes) {
         scoreType = type
     }
 
     //% block="add score with name $name and score $score"
+    //% group="Basic"
     export function addScore(name: string, score: number) {
         scores.push(new ScoreEntry(name, score))
         sortScores()
@@ -87,6 +93,7 @@ namespace Leaderboard {
     let scoreScreen: scene.Renderable
 
     //% block
+    //% group="Basic"
     export function showScores() {
         scoreScreen = scene.createRenderable(1, (screen, camera) => {
             let y = top;
@@ -106,6 +113,7 @@ namespace Leaderboard {
     }
 
     //% block
+    //% group="Basic"
     export function hideScores() {
         scoreScreen.destroy()
     }
@@ -113,6 +121,7 @@ namespace Leaderboard {
     let saveScoreList: string[] = []
 
     //% block
+    //% group="Saving"
     export function saveScores() {
         sortScores()
 
@@ -124,6 +133,7 @@ namespace Leaderboard {
     }
 
     //% block
+    //% group="Saving"
     export function clearAllScores() {
         blockSettings.remove("leaderboard-scores")
     }
