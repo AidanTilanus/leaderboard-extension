@@ -19,34 +19,6 @@ namespace Leaderboard {
         constructor(public name: string, public score: number) { }
     }
 
-    // leaderboard settings
-    let maxNameLenght: number = 3
-    let x: number = 16
-    let top: number = 16
-    let color: number = 1
-
-    //% block="set leaderboard $property to $value"
-    //% group="Customization"
-    export function setLeaderboardProperty(property: LeaderboardProperty, value: number) {
-        if (property == LeaderboardProperty.MaxNameLenght) {
-            maxNameLenght = value
-        }
-        else if (property == LeaderboardProperty.X) {
-            x = value
-        }
-        else if (property == LeaderboardProperty.Top) {
-            top = value
-        }
-    }
-
-    //% block="set leaderboard color to $color"
-    //% color.shadow="colorindexpicker"
-    //% color.defl=1
-    //% group="Customization"
-    export function setLeaderboardColor(color: number) {
-        color = color
-    }
-
     let scores: ScoreEntry[] = []
     // load the scores
     if (blockSettings.exists("leaderboard-scores")) {
@@ -79,12 +51,14 @@ namespace Leaderboard {
 
     //% block="set score type to $type"
     //% group="Basic"
+    //% weight=100
     export function setScoreType(type: ScoreTypes) {
         scoreType = type
     }
 
     //% block="add score with name $name and score $score"
     //% group="Basic"
+    //% weight=99
     export function addScore(name: string, score: number) {
         scores.push(new ScoreEntry(name, score))
         sortScores()
@@ -94,6 +68,7 @@ namespace Leaderboard {
 
     //% block
     //% group="Basic"
+    //% weight=20
     export function showScores() {
         scoreScreen = scene.createRenderable(1, (screen, camera) => {
             let y = top;
@@ -114,6 +89,7 @@ namespace Leaderboard {
 
     //% block
     //% group="Basic"
+    //% weight=19
     export function hideScores() {
         scoreScreen.destroy()
     }
@@ -122,6 +98,7 @@ namespace Leaderboard {
 
     //% block
     //% group="Saving"
+    //% weight=100
     export function saveScores() {
         sortScores()
 
@@ -134,7 +111,38 @@ namespace Leaderboard {
 
     //% block
     //% group="Saving"
+    //% weight=99
     export function clearAllScores() {
         blockSettings.remove("leaderboard-scores")
+    }
+
+    // leaderboard settings
+    let maxNameLenght: number = 3
+    let x: number = 16
+    let top: number = 16
+    let color: number = 1
+
+    //% block="set leaderboard $property to $value"
+    //% group="Customization"
+    //% weight=100
+    export function setLeaderboardProperty(property: LeaderboardProperty, value: number) {
+        if (property == LeaderboardProperty.MaxNameLenght) {
+            maxNameLenght = value
+        }
+        else if (property == LeaderboardProperty.X) {
+            x = value
+        }
+        else if (property == LeaderboardProperty.Top) {
+            top = value
+        }
+    }
+
+    //% block="set leaderboard color to $color"
+    //% group="Customization"
+    //% weight=99
+    //% color.shadow="colorindexpicker"
+    //% color.defl=1
+    export function setLeaderboardColor(color: number) {
+        color = color
     }
 }
