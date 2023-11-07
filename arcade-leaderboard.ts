@@ -70,7 +70,7 @@ namespace Leaderboard {
     //% weight=20
     export function showScores() {
         scoreScreen = scene.createRenderable(1, (screen, camera) => {
-            let y = top;
+            let y = leaderboardTop;
 
             for (const score of scores) {
                 let name = score.name
@@ -80,7 +80,7 @@ namespace Leaderboard {
                 }
                 name = name.toUpperCase()
 
-                screen.print(name + " " + score.score, x, y, color, image.font5)
+                screen.print(name + " " + score.score, leaderboardX, y, leaderboardColor, image.font5)
                 y += 8
             }
         })
@@ -117,9 +117,9 @@ namespace Leaderboard {
 
     // leaderboard settings
     let maxNameLenght: number = 3
-    let x: number = 60
-    let top: number = 22
-    let color: number = 1
+    let leaderboardX: number = 60
+    let leaderboardTop: number = 22
+    let leaderboardColor: number = 1
 
     //% block="set leaderboard $property to $value"
     //% group="Customization"
@@ -129,10 +129,10 @@ namespace Leaderboard {
             maxNameLenght = value
         }
         else if (property == LeaderboardProperty.X) {
-            x = value
+            leaderboardX = value
         }
         else if (property == LeaderboardProperty.Top) {
-            top = value
+            leaderboardTop = value
         }
     }
 
@@ -141,7 +141,7 @@ namespace Leaderboard {
     //% weight=99
     //% color.shadow="colorindexpicker"
     //% color.defl=1
-    export function setLeaderboardColor(newColor: number) {
-        color = newColor
+    export function setLeaderboardColor(color: number) {
+        leaderboardColor = color
     }
 }
