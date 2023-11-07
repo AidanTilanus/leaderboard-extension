@@ -6,12 +6,16 @@ enum ScoreTypes {
 }
 
 enum LeaderboardProperty {
+    //% block="max name lenght"
     MaxNameLenght,
+    //% block="x"
     X,
+    //% block="top"
     Top
 }
 
 //% block="Leaderboard"
+//% color="#1bb570"
 //% groups="['Basic', 'Saving', 'Customization']"
 namespace Leaderboard {
 
@@ -49,6 +53,7 @@ namespace Leaderboard {
     }
 
     //% block="set score type to $type"
+    //% blockId="leaderboardSetScoreType"
     //% group="Basic"
     //% weight=100
     export function setScoreType(type: ScoreTypes) {
@@ -56,6 +61,7 @@ namespace Leaderboard {
     }
 
     //% block="add score with name $name and score $score"
+    //% blockId="leaderboardAddScore"
     //% group="Basic"
     //% weight=99
     export function addScore(name: string, score: number) {
@@ -66,6 +72,7 @@ namespace Leaderboard {
     let scoreScreen: scene.Renderable
 
     //% block
+    //% blockId="leaderboardShowScores"
     //% group="Basic"
     //% weight=20
     export function showScores() {
@@ -87,6 +94,7 @@ namespace Leaderboard {
     }
 
     //% block
+    //% blockId="leaderboardHideScores"
     //% group="Basic"
     //% weight=19
     export function hideScores() {
@@ -96,6 +104,7 @@ namespace Leaderboard {
     let saveScoreList: string[] = []
 
     //% block
+    //% blockId="leaderboardSaveScores"
     //% group="Saving"
     //% weight=100
     export function saveScores() {
@@ -109,6 +118,7 @@ namespace Leaderboard {
     }
 
     //% block
+    //% blockId="leaderboardClearScores"
     //% group="Saving"
     //% weight=99
     export function clearAllScores() {
@@ -122,6 +132,7 @@ namespace Leaderboard {
     let leaderboardColor: number = 1
 
     //% block="set leaderboard $property to $value"
+    //% blockId="leaderboardChangeProperty"
     //% group="Customization"
     //% weight=100
     export function setLeaderboardProperty(property: LeaderboardProperty, value: number) {
@@ -137,11 +148,38 @@ namespace Leaderboard {
     }
 
     //% block="set leaderboard color to $color"
+    //% blockId="leaderboardChangeColor"
     //% group="Customization"
     //% weight=99
     //% color.shadow="colorindexpicker"
     //% color.defl=1
     export function setLeaderboardColor(color: number) {
         leaderboardColor = color
+    }
+
+    //% block="leaderboard $property"
+    //% blockId="leaderboardGetProperty"
+    //% group="Customization"
+    //% weight=50
+    export function getLeaderboardProperty(property: LeaderboardProperty): number {
+        if (property == LeaderboardProperty.MaxNameLenght) {
+            return maxNameLenght
+        }
+        else if (property == LeaderboardProperty.X) {
+            return leaderboardX
+        }
+        else if (property == LeaderboardProperty.Top) {
+            return leaderboardTop
+        }
+
+        return 0
+    }
+
+    //% block="leaderboard color"
+    //% blockId="leaderboardGetColor"
+    //% group="Customization"
+    //% weight=49
+    export function getLeaderboardColor(): number {
+        return leaderboardColor
     }
 }
