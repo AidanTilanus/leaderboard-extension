@@ -1,5 +1,5 @@
 {
-    "name": "leaderboard-extension - Copy",
+    "name": "leaderboard-extension",
     "description": "",
     "dependencies": {
         "device": "*",
