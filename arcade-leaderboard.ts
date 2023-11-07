@@ -15,7 +15,7 @@ enum LeaderboardProperty {
 }
 
 //% block="Leaderboard"
-//% color="#1bb59b"
+//% color="#228576"
 //% groups="['Basic', 'Saving', 'Customization']"
 namespace Leaderboard {
 
