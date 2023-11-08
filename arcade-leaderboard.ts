@@ -11,7 +11,9 @@ enum LeaderboardProperty {
     //% block="x"
     X,
     //% block="top"
-    Top
+    Top,
+    //% block="z"
+    Z
 }
 
 //% block="Leaderboard"
@@ -70,13 +72,14 @@ namespace Leaderboard {
     }
 
     let scoreScreen: scene.Renderable
+    let leaderboardZ: number = 100
 
     //% block
     //% blockId="leaderboardShowScores"
     //% group="Basic"
     //% weight=20
     export function showScores() {
-        scoreScreen = scene.createRenderable(1, (screen, camera) => {
+        scoreScreen = scene.createRenderable(leaderboardZ, (screen, camera) => {
             let y = leaderboardTop;
 
             for (const score of scores) {
@@ -145,6 +148,9 @@ namespace Leaderboard {
         else if (property == LeaderboardProperty.Top) {
             leaderboardTop = value
         }
+        else if (property == LeaderboardProperty.Z) {
+            leaderboardZ = value
+        }
     }
 
     //% block="set leaderboard color to $color"
@@ -170,6 +176,9 @@ namespace Leaderboard {
         }
         else if (property == LeaderboardProperty.Top) {
             return leaderboardTop
+        }
+        else if (property == LeaderboardProperty.Z) {
+            return leaderboardZ
         }
 
         return 0
