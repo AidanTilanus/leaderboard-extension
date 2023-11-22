@@ -18,10 +18,10 @@ enum LeaderboardProperty {
 
 //% block="Leaderboard"
 //% color="#228576"
-//% groups="['Basic', 'Saving', 'Customization']"
+//% groups="['Basic', 'Saving', 'Customization', 'Entries']"
 namespace Leaderboard {
 
-    class ScoreEntry {
+    export class ScoreEntry {
         constructor(public name: string, public score: number) { }
     }
 
@@ -190,5 +190,33 @@ namespace Leaderboard {
     //% weight=49
     export function getLeaderboardColor(): number {
         return leaderboardColor
+    }
+
+    //% block="get entry at place $place"
+    //% blockId="leaderboardGetEntry"
+    //% group="Entries"
+    //% weight=99
+    //% place.defl=1
+    //% place.min=1 place.max=12
+    export function getEntryAt(place: number): ScoreEntry {
+        return scores[place - 1]
+    }
+
+    //% block="get $entry name"
+    //% blockId="leaderboardGetEntryName"
+    //% group="Entries"
+    //% weight=50
+    //% entry.shadow=leaderboardGetEntry
+    export function getEntryName(entry: ScoreEntry): string {
+        return entry.name.toUpperCase()
+    }
+
+    //% block="get $entry score"
+    //% blockId="leaderboardGetEntryScore"
+    //% group="Entries"
+    //% weight=49
+    //% entry.shadow=leaderboardGetEntry
+    export function getEntryScore(entry: ScoreEntry): number {
+        return entry.score
     }
 }
