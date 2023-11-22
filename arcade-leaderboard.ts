@@ -205,7 +205,7 @@ namespace Leaderboard {
     //% block="get $entry name"
     //% blockId="leaderboardGetEntryName"
     //% group="Entries"
-    //% weight=50
+    //% weight=49
     //% entry.shadow=leaderboardGetEntry
     export function getEntryName(entry: ScoreEntry): string {
         return entry.name.toUpperCase()
@@ -214,7 +214,7 @@ namespace Leaderboard {
     //% block="get $entry score"
     //% blockId="leaderboardGetEntryScore"
     //% group="Entries"
-    //% weight=49
+    //% weight=48
     //% entry.shadow=leaderboardGetEntry
     export function getEntryScore(entry: ScoreEntry): number {
         return entry.score
