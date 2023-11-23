@@ -45,8 +45,6 @@ namespace Leaderboard {
             case ScoreTypes.LowestScore:
                 scores = scores.slice().sort((a, b) => a.score - b.score);
                 break;
-            default:
-                break;
         }
 
         if (scores.length > 12) {
@@ -60,6 +58,7 @@ namespace Leaderboard {
     //% weight=100
     export function setScoreType(type: ScoreTypes) {
         scoreType = type
+        sortScores()
     }
 
     //% block="add score with name $name and score $score"
@@ -218,5 +217,14 @@ namespace Leaderboard {
     //% entry.shadow=leaderboardGetEntry
     export function getEntryScore(entry: ScoreEntry): number {
         return entry.score
+    }
+
+    //% block="array of all scores"
+    //% blockId="leaderboardGetArrayOfScores"
+    //% group="Entries"
+    //% weight=39
+    export function getAllScores(): ScoreEntry[] {
+        sortScores()
+        return scores
     }
 }
