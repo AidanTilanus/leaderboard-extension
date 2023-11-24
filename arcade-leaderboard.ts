@@ -19,11 +19,26 @@ enum LeaderboardProperty {
 //% block="Leaderboard"
 //% color="#228576"
 //% groups="['Basic', 'Saving', 'Customization', 'Entries']"
-namespace Leaderboard {
+namespace leaderboard {
 
     export class ScoreEntry {
         constructor(public name: string, public score: number) { }
     }
+
+    const RANKS: string[] = [
+        "1ST ",
+        "2ND ",
+        "3RD ",
+        "4TH ",
+        "5TH ",
+        "6TH ",
+        "7TH ",
+        "8TH ",
+        "9TH ",
+        "10TH",
+        "11TH",
+        "12TH"
+    ]
 
     let scores: ScoreEntry[] = []
     // load the scores
@@ -81,7 +96,10 @@ namespace Leaderboard {
         scoreScreen = scene.createRenderable(leaderboardZ, (screen, camera) => {
             let y = leaderboardTop;
 
-            for (const score of scores) {
+            for (let i = 0; i < scores.length; i++) {
+                const score: ScoreEntry = scores[i]
+                const rank: string = RANKS[i]
+                
                 let name = score.name
                 name = name.substr(0, maxNameLenght)
                 for (let i = name.length; i < maxNameLenght; i++) {
@@ -89,7 +107,7 @@ namespace Leaderboard {
                 }
                 name = name.toUpperCase()
 
-                screen.print(name + " " + score.score, leaderboardX, y, leaderboardColor, image.font5)
+                screen.print(rank + " " + name + " " + score.score, leaderboardX, y, leaderboardColor, image.font5)
                 y += 8
             }
         })
