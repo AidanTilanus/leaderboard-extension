@@ -26,15 +26,15 @@ namespace leaderboard {
     }
 
     const RANKS: string[] = [
-        "1ST ",
-        "2ND ",
-        "3RD ",
-        "4TH ",
-        "5TH ",
-        "6TH ",
-        "7TH ",
-        "8TH ",
-        "9TH ",
+        " 1ST",
+        " 2ND",
+        " 3RD",
+        " 4TH",
+        " 5TH",
+        " 6TH",
+        " 7TH",
+        " 8TH",
+        " 9TH",
         "10TH",
         "11TH",
         "12TH"
@@ -107,7 +107,7 @@ namespace leaderboard {
                 }
                 name = name.toUpperCase()
 
-                screen.print(rank + " " + name + " " + score.score, leaderboardX, y, leaderboardColor, image.font5)
+                screen.print(rank + "  " + name + "  " + score.score, leaderboardX, y, leaderboardColor, image.font5)
                 y += 8
             }
         })
