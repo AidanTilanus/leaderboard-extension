@@ -88,6 +88,8 @@ namespace leaderboard {
     let scoreScreen: scene.Renderable
     let leaderboardZ: number = 100
 
+    const font: image.Font = image.font5
+
     //% block
     //% blockId="leaderboardShowScores"
     //% group="Basic"
@@ -107,7 +109,12 @@ namespace leaderboard {
                 }
                 name = name.toUpperCase()
 
-                screen.print(rank + "  " + name + "  " + score.score, leaderboardX, y, leaderboardColor, image.font5)
+                if (ranksEnabled) {
+                    screen.print(rank + "  " + name + "  " + score.score, leaderboardX, y, leaderboardColor, font)
+                }
+                else {
+                    screen.print(name + "  " + score.score, leaderboardX, y, leaderboardColor, font)
+                }
                 y += 8
             }
         })
@@ -150,6 +157,8 @@ namespace leaderboard {
     let leaderboardX: number = 60
     let leaderboardTop: number = 22
     let leaderboardColor: number = 1
+
+    let ranksEnabled: boolean = true
 
     //% block="set leaderboard $property to $value"
     //% blockId="leaderboardChangeProperty"
@@ -207,6 +216,24 @@ namespace leaderboard {
     //% weight=49
     export function getLeaderboardColor(): number {
         return leaderboardColor
+    }
+
+    //% block="turn ranks $on"
+    //% blockId="leaderboardEnableRanks"
+    //% group="Customization"
+    //% weight=149
+    //% on.shadow="toggleOnOff"
+    //% on.defl=true
+    export function enableRanks(on: boolean) {
+        ranksEnabled = on
+    }
+
+    //% block="ranks enabled"
+    //% blockId="leaderboardGetRanksEnabled"
+    //% group="Customization"
+    //% weight=148
+    export function getRanksEnabled(): boolean {
+        return ranksEnabled
     }
 
     //% block="get entry at place $place"

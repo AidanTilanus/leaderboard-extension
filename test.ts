@@ -13,6 +13,7 @@ controller.menu.onEvent(ControllerButtonEvent.Pressed, function() {
     leaderboard.hideScores()
 })
 
+leaderboard.enableRanks(true)
 leaderboard.setLeaderboardColor(1)
 leaderboard.setLeaderboardProperty(LeaderboardProperty.X, 15)
 leaderboard.setLeaderboardProperty(LeaderboardProperty.Top, 15)
