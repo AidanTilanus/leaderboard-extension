@@ -62,8 +62,8 @@ namespace leaderboard {
                 break;
         }
 
-        if (scores.length > 12) {
-            scores = scores.slice(0, 12);
+        if (scores.length > maxSaveAmount) {
+            scores = scores.slice(0, maxSaveAmount);
         }
     }
 
@@ -156,6 +156,7 @@ namespace leaderboard {
     let maxNameLenght: number = 3
     let leaderboardX: number = 60
     let leaderboardTop: number = 22
+    let maxSaveAmount: number = 12
     let leaderboardColor: number = 1
 
     let ranksEnabled: boolean = true
@@ -236,7 +237,7 @@ namespace leaderboard {
         return ranksEnabled
     }
 
-    //% block="get entry at place $place"
+    //% block="entry at place $place"
     //% blockId="leaderboardGetEntry"
     //% group="Entries"
     //% weight=99
@@ -244,6 +245,15 @@ namespace leaderboard {
     //% place.min=1 place.max=12
     export function getEntryAt(place: number): ScoreEntry {
         return scores[place - 1]
+    }
+
+    //% block="remove $entry"
+    //% blockId="leaderboardRemoveEntry"
+    //% group="Entries"
+    //% weight=98
+    //% entry.shadow=leaderboardGetEntry
+    export function removeScore(entry: ScoreEntry) {
+        scores = scores.filter((item) => item !== entry);
     }
 
     //% block="get $entry name"
