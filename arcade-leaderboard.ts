@@ -76,7 +76,7 @@ namespace leaderboard {
         sortScores()
     }
 
-    //% block="add score with name $name and score $score"
+    //% block="add entry with name $name and score $score"
     //% blockId="leaderboardAddScore"
     //% group="Basic"
     //% weight=99
@@ -90,7 +90,7 @@ namespace leaderboard {
 
     const font: image.Font = image.font5
 
-    //% block
+    //% block="show scores"
     //% blockId="leaderboardShowScores"
     //% group="Basic"
     //% weight=20
@@ -120,7 +120,7 @@ namespace leaderboard {
         })
     }
 
-    //% block
+    //% block="hide scores"
     //% blockId="leaderboardHideScores"
     //% group="Basic"
     //% weight=19
@@ -130,7 +130,7 @@ namespace leaderboard {
 
     let saveScoreList: string[] = []
 
-    //% block
+    //% block="save scores"
     //% blockId="leaderboardSaveScores"
     //% group="Saving"
     //% weight=100
@@ -144,7 +144,7 @@ namespace leaderboard {
         blockSettings.writeStringArray("leaderboard-scores", saveScoreList)
     }
 
-    //% block
+    //% block="clear all scores"
     //% blockId="leaderboardClearScores"
     //% group="Saving"
     //% weight=99
